@@ -21,7 +21,7 @@ class PokemonType {
 }
 
 class PType {
-  int url;
+  String url;
   String name;
 
   PType({required this.url, required this.name});

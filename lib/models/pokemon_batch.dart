@@ -3,8 +3,8 @@ class PokemonLinkBatch {
 
   PokemonLinkBatch({required this.pokemonBatchList});
 
-  factory PokemonLinkBatch.fromMap(Map<String, dynamic> json) => PokemonLinkBatch(
-        pokemonBatchList: List<PokemonLink>.from(json['results'].map((e) => PokemonLink.fromMap(e))),
+  factory PokemonLinkBatch.fromMap(List<dynamic> json) => PokemonLinkBatch(
+        pokemonBatchList: json.map((e) => PokemonLink.fromMap(e)).toList(),
       );
 }
 
@@ -14,5 +14,5 @@ class PokemonLink {
 
   PokemonLink({required this.name, required this.url});
 
-  factory PokemonLink.fromMap(Map<String, dynamic> json) => PokemonLink(name: json['name'], url: json['url']);
+  factory PokemonLink.fromMap(Map<String, dynamic> json) => PokemonLink(name: json['name']!, url: json['url']!);
 }

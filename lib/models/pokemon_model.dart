@@ -42,7 +42,7 @@ class Pokemon {
         height: json['height'],
         weight: json['weight'],
         abilities: PokemonAbilities.fromMap(json),
-        sprites: PokemonSprites.fromMap(json),
+        sprites: PokemonSprites.fromMap(json['sprites']),
         types: PokemonTypes.fromMap(json),
         versions: GameIndices.fromMap(json),
       );

@@ -10,7 +10,7 @@ class PokemonAbilities {
 
 class PokemonAbility {
   bool isHidden;
-  String slot;
+  int slot;
   Ability abilities;
 
   PokemonAbility({
@@ -22,21 +22,21 @@ class PokemonAbility {
   factory PokemonAbility.fromMap(Map<String, dynamic> json) => PokemonAbility(
         isHidden: json['is_hidden'],
         slot: json['slot'],
-        abilities: Ability.fromMap(json),
+        abilities: Ability.fromMap(json['ability']),
       );
 }
 
 class Ability {
-  String id;
   String name;
+  String url;
 
   Ability({
-    required this.id,
     required this.name,
+    required this.url,
   });
 
   factory Ability.fromMap(Map<String, dynamic> json) => Ability(
-        id: json['id'],
+        url: json['url'],
         name: json['name'],
       );
 }

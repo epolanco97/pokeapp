@@ -1,13 +1,3 @@
-// class GameIndices {
-//   List<Version> versions = [];
-
-//   GameIndices({required this.versions});
-
-//   factory GameIndices.fromMap(Map<String, dynamic> json) => GameIndices(
-//         versions: List<Version>.from(json['game_indices'].map((e) => Version.fromMap(e))),
-//       );
-// }
-
 class GameIndices {
   List<GameIndice> games;
 
@@ -19,7 +9,7 @@ class GameIndices {
 }
 
 class GameIndice {
-  String gameIndex;
+  int gameIndex;
   Version version;
 
   GameIndice({required this.gameIndex, required this.version});

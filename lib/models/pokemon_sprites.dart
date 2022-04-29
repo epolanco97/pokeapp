@@ -1,22 +1,22 @@
 class PokemonSprites {
   String frontDefault;
   String frontShiny;
-  String frontFemale;
-  String frontShinyFemale;
+  String? frontFemale;
+  String? frontShinyFemale;
   String backDefault;
   String backShiny;
-  String backFemale;
-  String backShinyFemale;
+  String? backFemale;
+  String? backShinyFemale;
 
   PokemonSprites({
     required this.frontDefault,
     required this.frontShiny,
-    required this.frontFemale,
-    required this.frontShinyFemale,
+    this.frontFemale,
+    this.frontShinyFemale,
     required this.backDefault,
     required this.backShiny,
-    required this.backFemale,
-    required this.backShinyFemale,
+    this.backFemale,
+    this.backShinyFemale,
   });
 
   factory PokemonSprites.fromMap(Map<String, dynamic> json) => PokemonSprites(
