@@ -29,4 +29,15 @@ class PokemonSprites {
         backFemale: json['back_female'],
         backShinyFemale: json['back_shiny_female'],
       );
+
+  Map<String, dynamic> toJson() => {
+        'front_default': frontDefault,
+        'front_shiny': frontShiny,
+        'front_female': frontFemale,
+        'front_shiny_female': frontShinyFemale,
+        'back_default': backDefault,
+        'back_shiny': backShiny,
+        'back_female': backFemale,
+        'back_shiny_female': backShinyFemale,
+      };
 }

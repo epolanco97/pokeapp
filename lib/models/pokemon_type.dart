@@ -1,11 +1,15 @@
 class PokemonTypes {
-  List<PokemonType> types;
+  List<PokemonType> typesList;
 
-  PokemonTypes({required this.types});
+  PokemonTypes({required this.typesList});
 
   factory PokemonTypes.fromMap(Map<String, dynamic> json) => PokemonTypes(
-        types: List<PokemonType>.from(json['types'].map((e) => PokemonType.fromMap(e))),
+        typesList: List<PokemonType>.from(json['types'].map((e) => PokemonType.fromMap(e))),
       );
+
+      Map<String, dynamic> toJson() => {
+        "types" : List<dynamic>.from(typesList.map((x) => x.toJson())),
+      };
 }
 
 class PokemonType {
@@ -18,6 +22,11 @@ class PokemonType {
         slot: json['slot'],
         type: PType.fromMap(json['type']),
       );
+
+    Map<String, dynamic> toJson() => {
+      "slot" : slot,
+      "type" : type.toJson()
+    };
 }
 
 class PType {
@@ -27,4 +36,9 @@ class PType {
   PType({required this.url, required this.name});
 
   factory PType.fromMap(Map<String, dynamic> json) => PType(url: json['url'], name: json['name']);
+
+  Map<String,dynamic> toJson() => {
+    "url" : url,
+    "name" : name,
+  };
 }

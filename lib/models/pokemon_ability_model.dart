@@ -6,24 +6,34 @@ class PokemonAbilities {
   factory PokemonAbilities.fromMap(Map<String, dynamic> json) => PokemonAbilities(
         abilities: List<PokemonAbility>.from(json['abilities'].map((e) => PokemonAbility.fromMap(e))),
       );
+
+  Map<String, dynamic> toJson() => {
+        "abilities": List<dynamic>.from(abilities.map((x) => x.toJson())),
+      };
 }
 
 class PokemonAbility {
   bool isHidden;
   int slot;
-  Ability abilities;
+  Ability ability;
 
   PokemonAbility({
     required this.isHidden,
     required this.slot,
-    required this.abilities,
+    required this.ability,
   });
 
   factory PokemonAbility.fromMap(Map<String, dynamic> json) => PokemonAbility(
         isHidden: json['is_hidden'],
         slot: json['slot'],
-        abilities: Ability.fromMap(json['ability']),
+        ability: Ability.fromMap(json['ability']),
       );
+
+  Map<String, dynamic> toJson() => {
+    'is_hidden' : isHidden,
+    'slot' : slot,
+    'ability' : ability.toJson(),
+  };
 }
 
 class Ability {
@@ -39,4 +49,9 @@ class Ability {
         url: json['url'],
         name: json['name'],
       );
+
+  Map<String, dynamic> toJson() => {
+    'name' : name,
+    'url' : url,
+  };
 }

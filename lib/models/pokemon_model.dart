@@ -1,10 +1,10 @@
+import 'dart:convert';
+
 import 'package:pokeapi/models/game_indices_model.dart';
 import 'package:pokeapi/models/pokemon_ability_model.dart';
 import 'package:pokeapi/models/pokemon_sprites.dart';
 import 'package:pokeapi/models/pokemon_type.dart';
 
-
-//TODO pokemon batch https://pokeapi.co/api/v2/pokemon?limit=10&offset=100 como hacer el parsing de url ?
 class Pokemons {
   List<Pokemon> pokemons;
 
@@ -12,6 +12,10 @@ class Pokemons {
 
   factory Pokemons.fromMap(Map<String, dynamic> json) => Pokemons(
         pokemons: List<Pokemon>.from(json['results'].map((e) => Pokemon.fromMap(e))),
+      );
+
+  factory Pokemons.fromList(List<dynamic> json) => Pokemons(
+        pokemons: json.map((e) => Pokemon.fromMap(e)).toList(),
       );
 }
 
@@ -46,4 +50,19 @@ class Pokemon {
         types: PokemonTypes.fromMap(json),
         versions: GameIndices.fromMap(json),
       );
+
+  static Map<String, dynamic> toJson(Pokemon pokemon) => {
+        "id": pokemon.id,
+        "name": pokemon.name,
+        "height": pokemon.height,
+        "weight": pokemon.weight,
+        "abilities": pokemon.abilities.toJson()['abilities'],
+        "sprites": pokemon.sprites.toJson(),
+        "types": pokemon.types.toJson()['types'],
+        "game_indices": pokemon.versions.toJson()['game_indices'],
+      };
+
+  static String encode(List<Pokemon> pokemons) => jsonEncode(pokemons.map<Map<String, dynamic>>((pokemon) => Pokemon.toJson(pokemon)).toList());
+
+  static List<Pokemon> decode(String pokemons) => (json.decode(pokemons) as List<dynamic>).map<Pokemon>((item) => Pokemon.fromMap(item)).toList();
 }
