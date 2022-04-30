@@ -11,7 +11,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance!.addPostFrameCallback((_) { 
-      Future.delayed(const Duration(milliseconds: 2800)).then((value) async {
+      Future.delayed(const Duration(milliseconds: 2550)).then((value) async {
         Provider.of<ConnectionCheck>(context, listen: false).connectionCheck = await DataConnectionChecker().hasConnection;
         Navigator.pushReplacementNamed(context, RoutesNames.homePage);
       });

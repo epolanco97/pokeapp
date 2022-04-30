@@ -79,7 +79,7 @@ class DetailBody extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: List.generate(pokemon.versions.games.length, (index) {
-                        return Text(pokemon.versions.games[index].version.name);
+                        return Text(pokemon.versions.games[index].version.name,);
                       }),
                     ),
                   ),

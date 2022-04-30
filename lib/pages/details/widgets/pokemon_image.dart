@@ -10,7 +10,7 @@ class PokemonImage extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final pokemon = Provider.of<PokemonsProvider>(context).pokemon!;
     return Positioned(
-      top: size.height * 0.22,
+      top: size.height * 0.18,
       left: size.width * 0.28,
       child: ConstrainedBox(
         constraints: BoxConstraints(
