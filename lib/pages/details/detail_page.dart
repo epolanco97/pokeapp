@@ -23,7 +23,7 @@ class _DetailPageState extends State<DetailPage> {
   @override
   void initState() {
     super.initState();
-    Provider.of<PokemonsProvider>(context).pokemon = widget.pokemon;
+    Provider.of<PokemonsProvider>(context, listen: false).pokemon = widget.pokemon;
   }
 
   @override

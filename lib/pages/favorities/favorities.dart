@@ -5,8 +5,23 @@ import 'package:pokeapi/providers/pokemons_provider.dart';
 import 'package:pokeapi/services/local_storage.dart';
 import 'package:provider/provider.dart';
 
-class FavoritiesPage extends StatelessWidget {
+class FavoritiesPage extends StatefulWidget {
   const FavoritiesPage({Key? key}) : super(key: key);
+
+  @override
+  State<FavoritiesPage> createState() => _FavoritiesPageState();
+}
+
+class _FavoritiesPageState extends State<FavoritiesPage> {
+  @override
+  void initState() {
+    super.initState();
+
+    if (LocalStorage.prefs.getString('favPokemons') != null) {
+      final List<Pokemon> favList = Pokemon.decode(LocalStorage.prefs.getString('favPokemons')!);
+      Provider.of<PokemonsProvider>(context, listen: false).favPokemons = favList;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +50,9 @@ class FavoritiesPage extends StatelessWidget {
                         ? GridView.builder(
                             physics: const BouncingScrollPhysics(),
                             gridDelegate: sliverDelegates(size),
-                            itemCount:  pokemonsProvider.favPokemons.length,
+                            itemCount: pokemonsProvider.favPokemons.length,
                             itemBuilder: (BuildContext context, int index) {
-                              final Pokemon pokemon =  Provider.of<PokemonsProvider>(context, listen:false).favPokemons[index];
+                              final Pokemon pokemon = Provider.of<PokemonsProvider>(context, listen: false).favPokemons[index];
                               return PokemonCard(pokemon: pokemon);
                             })
                         : const Center(child: Text('No has agregado pokemones a tu lista de favoritos')))

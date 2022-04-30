@@ -9,7 +9,7 @@ class PokemonsProvider extends ChangeNotifier {
   List<Pokemon> favPokemons = [];
   Pokemon? pokemon;
 
-  Future<void> getPokemons(String path) async {
+  void getPokemons(String path) async {
     pokemons.clear();
 
     final resp = await ApiClass.httpGet(path);
@@ -28,7 +28,7 @@ class PokemonsProvider extends ChangeNotifier {
     return auxFav.contains(id);
   }
 
-  Future<void> addToFav(Pokemon pokemon) async {
+  void addToFav(Pokemon pokemon) async {
     favPokemons = [...favPokemons, pokemon];
     final String encodedData = Pokemon.encode(favPokemons);
     await LocalStorage.prefs.setString('favPokemons', encodedData);
@@ -37,12 +37,12 @@ class PokemonsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  deleteFav(Pokemon pokemon) {
+  void deleteFav(Pokemon pokemon) {
     favPokemons.remove(pokemon);
     notifyListeners();
   }
 
-  clearFavPokemons() {
+  void clearFavPokemons() {
     favPokemons.clear();
     notifyListeners();
   }
